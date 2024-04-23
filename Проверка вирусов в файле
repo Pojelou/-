@@ -1,0 +1,25 @@
+import os
+import hashlib
+
+def md5(file_path):
+    hash_md5 = hashlib.md5()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
+
+def check_file(file_path):
+    md5_hash = md5(file_path)
+    if md5_hash in viruses:
+        print("Вирус обнаружен!")
+    else:
+        print("Файл не заражен вирусами.")
+
+viruses = {
+    "md5_hash_вируса_1": "md5_hash_вируса_1",
+    "md5_hash_вируса_2": "md5_hash_вируса_2",
+    "md5_hash_вируса_3": "md5_hash_вируса_3"
+}
+
+file_path = "C:\Users\User\Pictures"
+check_file(file_path)
